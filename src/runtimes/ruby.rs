@@ -171,7 +171,7 @@ fn then(r_self: magnus::Value) -> magnus::Value {
             }
             .as_value(),
         ))
-        .into_value_with(ruby)
+        .into_value_with(&ruby)
 }
 
 #[derive(Clone, Debug)]
@@ -448,11 +448,11 @@ impl Runtime for RubyRuntime {
             let result = f(
                 (),
                 args.iter()
-                    .map(|arg| RubyValue::new(arg.into_value_with(ruby)))
+                    .map(|arg| RubyValue::new(arg.into_value_with(&ruby)))
                     .collect(),
             )
             .expect("failed to call callback");
-            result.into_value_with(ruby)
+            result.into_value_with(&ruby)
         }
 
         self.execute_in_thread(Box::new(move |ruby: &Ruby| {
