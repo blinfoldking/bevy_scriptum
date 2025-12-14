@@ -81,7 +81,7 @@ fn update(
 
 
 fn teardown(
-    mut ev_asset: EventReader<AssetEvent<LuaScript>>,
+    mut ev_asset: MessageReader<AssetEvent<LuaScript>>,
     scripting_runtime: ResMut<LuaRuntime>,
     mut scripted_entities: Query<(Entity, &mut LuaScriptData)>,
 ) {
